@@ -1,3 +1,4 @@
+import { VoteCount } from "./types";
 import { db } from "./db";
 
 export async function update_vote(
@@ -17,20 +18,17 @@ export async function update_vote(
   );
 }
 
-export interface VoteCount {
-  vote_value: number;
-  count: number;
-}
-
-export async function get_vote_counts(topic_id: string): Promise<VoteCount[]> {
+export async function get_vote_counts(
+  question_id: string
+): Promise<VoteCount[]> {
   const res = await db.query(
     `
-      SELECT question_id, vote_value, COUNT(*) AS count
+      SELECT vote_value, COUNT(*) AS count
       FROM Votes
-      WHERE topic_id = $1
-      GROUP BY topic_id, question_id, vote_value;
+      WHERE question_id = $1
+      GROUP BY question_id, vote_value;
     `,
-    [topic_id]
+    [question_id]
   );
 
   return res.rows.map((row: any) => ({
