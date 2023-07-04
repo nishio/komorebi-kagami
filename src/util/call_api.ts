@@ -15,8 +15,17 @@ export async function call_update_vote(
 }
 
 export async function call_get_vote_counts(question_id: string) {
+  const response = await fetch(`/api/vote_counts?question=${question_id}`);
+  const data = await response.json();
+  return data;
+}
+
+export async function call_get_votes_by_person_for_topic(
+  person: string,
+  topic: string
+) {
   const response = await fetch(
-    `/api/get_vote_counts?questionId=${question_id}`
+    `/api/votes_by_person_for_topic?person=${person}&topic=${topic}`
   );
   const data = await response.json();
   return data;

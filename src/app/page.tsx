@@ -1,5 +1,5 @@
 import { insertVote } from "@/util/insert";
-import { get_vote_counts, update_vote } from "@/util/util";
+import { get_vote_counts, update_vote } from "@/util/db";
 import Image from "next/image";
 
 const testbench = async () => {

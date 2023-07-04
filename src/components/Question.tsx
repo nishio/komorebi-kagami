@@ -9,6 +9,7 @@ type Props = {
   description: string;
   topicId: string;
   userId: string;
+  vote: number | undefined;
 };
 
 const button_labels = {
@@ -17,8 +18,19 @@ const button_labels = {
   "1": "はい",
 };
 
-const Question: React.FC<Props> = ({ id, description, topicId, userId }) => {
+const Question: React.FC<Props> = ({
+  id,
+  description,
+  topicId,
+  userId,
+  vote,
+}) => {
   const [voteCounts, setVoteCounts] = useState<VoteCount[]>([]);
+  const [voted, setVoted] = useState(vote);
+
+  useEffect(() => {
+    setVoted(vote);
+  }, [vote]);
 
   useEffect(() => {
     async function fetchVotes() {
@@ -30,6 +42,7 @@ const Question: React.FC<Props> = ({ id, description, topicId, userId }) => {
   }, [id]);
 
   const handleVote = async (voteValue: number) => {
+    setVoted(voteValue);
     await call_update_vote(topicId, userId, id, voteValue);
     const updatedCounts = await call_get_vote_counts(id);
     setVoteCounts(updatedCounts);
@@ -41,6 +54,7 @@ const Question: React.FC<Props> = ({ id, description, topicId, userId }) => {
       <button onClick={() => handleVote(1)}>{button_labels["1"]}</button>
       <button onClick={() => handleVote(0)}>{button_labels["0"]}</button>
       <button onClick={() => handleVote(-1)}>{button_labels["-1"]}</button>
+      <p>{voted !== undefined ? `voted: ${voted}` : "not voted"}</p>
 
       <div>
         Vote Counts:

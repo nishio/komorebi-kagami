@@ -1,6 +1,6 @@
 // filename: pages/api/votes.ts
 import { NextApiRequest, NextApiResponse } from "next";
-import { update_vote } from "../../util/util";
+import { update_vote } from "../../util/db";
 
 export default async function handler(
   req: NextApiRequest,
