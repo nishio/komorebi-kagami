@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 //import { update_vote, get_vote_counts, VoteCount } from "../util/util";
 import { VoteCount } from "@/util/types";
 import { call_update_vote, call_get_vote_counts } from "../util/call_api";
+import StackedBarChart from "./BarChart";
 
 type Props = {
   id: string;
@@ -48,34 +49,28 @@ const Question: React.FC<Props> = ({
     setVoteCounts(updatedCounts);
   };
 
+  const VoteButton: React.FC<{ voteValue: number }> = ({ voteValue }) => {
+    // @ts-ignore
+    const label = button_labels[voteValue.toString()];
+    return (
+      <button
+        onClick={() => handleVote(voteValue)}
+        style={{ borderColor: voteValue === voted ? "blue" : "lightgray" }}
+      >
+        {label}
+      </button>
+    );
+  };
+
   return (
     <div>
       <h2>{description}</h2>
-      <button onClick={() => handleVote(1)}>{button_labels["1"]}</button>
-      <button onClick={() => handleVote(0)}>{button_labels["0"]}</button>
-      <button onClick={() => handleVote(-1)}>{button_labels["-1"]}</button>
-      <p>{voted !== undefined ? `voted: ${voted}` : "not voted"}</p>
+      <VoteButton voteValue={1} />
+      <VoteButton voteValue={0} />
+      <VoteButton voteValue={-1} />
 
-      <div>
-        Vote Counts:
-        <ul>
-          {voteCounts
-            .filter((vc) => vc.vote_value === -1)
-            .map((vc) => (
-              <li key="-1">-1: {vc.count}</li>
-            ))}
-          {voteCounts
-            .filter((vc) => vc.vote_value === 0)
-            .map((vc) => (
-              <li key="0">0: {vc.count}</li>
-            ))}
-          {voteCounts
-            .filter((vc) => vc.vote_value === 1)
-            .map((vc) => (
-              <li key="1">1: {vc.count}</li>
-            ))}
-        </ul>
-      </div>
+      {/* <p>{voted !== undefined ? `voted: ${voted}` : "not voted"}</p> */}
+      {voted !== undefined && <StackedBarChart data={voteCounts} />}
     </div>
   );
 };
