@@ -7,6 +7,7 @@ import StackedBarChart from "./BarChart";
 
 type Props = {
   id: string;
+  index: number;
   description: string;
   topicId: string;
   userId: string;
@@ -21,6 +22,7 @@ const button_labels = {
 
 const Question: React.FC<Props> = ({
   id,
+  index,
   description,
   topicId,
   userId,
@@ -64,7 +66,9 @@ const Question: React.FC<Props> = ({
 
   return (
     <div>
-      <h2>{description}</h2>
+      <h2>
+        Q{index + 1}: {description}
+      </h2>
       <VoteButton voteValue={1} />
       <VoteButton voteValue={0} />
       <VoteButton voteValue={-1} />
