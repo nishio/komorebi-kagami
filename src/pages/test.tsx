@@ -3,21 +3,21 @@ import React, { useEffect, useState } from "react";
 import Question from "@/components/Question";
 import { call_get_votes_by_person_for_topic } from "@/util/call_api";
 import { Vote } from "@/util/types";
+import { TQuestion, Topic, get_questions, get_topic } from "@/util/get_topic";
 
-const topicId = "test_topic";
+// const topicId = "2aM78yxUKopAHogmVHaK";
+const topicId = "75A054UDz25dl2qG2Fmw";
 
-type Question = {
-  id: string;
-  description: string;
-};
-
-const questions: Question[] = [
-  { id: "q1", description: "Question 1 Description" },
-  { id: "q2", description: "Question 2 Description" },
-  { id: "q3", description: "Question 3 Description" },
-];
+// const questions: Question[] = [
+//   { id: "q1", description: "Question 1 Description" },
+//   { id: "q2", description: "Question 2 Description" },
+//   { id: "q3", description: "Question 3 Description" },
+// ];
+type TopicState = null | Topic; // not read yet
 
 const TestPage: React.FC = () => {
+  const [topic, setTopic] = useState(null as TopicState);
+  const [questions, setQuestions] = useState([] as TQuestion[]);
   const [votes, setVotes] = useState<{ [key: string]: number }>({});
   const [userId] = useState("user123");
   useEffect(() => {
@@ -31,14 +31,26 @@ const TestPage: React.FC = () => {
     }
     handle();
   }, [userId]);
+
+  useEffect(() => {
+    get_topic(topicId).then((topic) => {
+      setTopic(topic);
+    });
+    get_questions(topicId).then((questions) => {
+      setQuestions(questions);
+    });
+  }, [topicId]);
+
   return (
     <div>
       <h1>test_topic</h1>
-      {"Topic Description"}
+      {topic && topic.description}
+
       {questions.map((question) => (
         <Question
           key={question.id}
           id={question.id}
+          index={question.index}
           description={question.description}
           topicId={topicId}
           userId={userId}

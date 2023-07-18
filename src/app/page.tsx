@@ -1,14 +1,15 @@
 import { insertVote } from "@/util/etude_insert";
 import { get_vote_counts, update_vote } from "@/util/db";
 import Image from "next/image";
-import { make_firestore_items } from "@/util/etude_firebase";
+import { make_firestore_items, make_topic } from "@/util/etude_firebase";
 
 const testbench = async () => {
   // insertVote("hi", "user456", "question789", 1);
   // update_vote("hi", "user456", "question789", 1);
   // update_vote("hi", "user123", "question789", -1);
   // console.log(await get_vote_counts("hi"));
-  make_firestore_items();
+  // make_firestore_items();
+  // make_topic("hi");
   return "ok";
 };
 
