@@ -1,3 +1,13 @@
+## Komorebi-kagami
+
+Currently it is alpha-version for Japanese speaker. I can read English, feel free to contact me.
+
+For Japanese speaker, visit here: [Japanese README](https://scrapbox.io/omoikane/%E3%80%8C%E3%82%B3%E3%83%A2%E3%83%AC%E3%83%93%E3%82%AB%E3%82%AC%E3%83%9F%E3%80%8D%E6%84%9F%E6%83%B3%E5%8F%8E%E9%9B%86%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E6%A7%8B%E7%AF%89%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88)
+
+
+
+## README
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
