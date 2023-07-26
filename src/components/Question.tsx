@@ -14,7 +14,7 @@ type Props = {
   vote: number | undefined;
 };
 
-const button_labels = {
+export const button_labels = {
   "-1": "いいえ",
   "0": "どちらでもない/わからない",
   "1": "はい",
