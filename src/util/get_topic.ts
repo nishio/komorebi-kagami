@@ -13,6 +13,7 @@ export type Topic =
   | {
       id: string;
       description: string;
+      title: string;
     };
 
 export const get_topic = async (topicId: string): Promise<Topic> => {
