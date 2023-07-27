@@ -48,16 +48,22 @@ const StackedBarChart: React.FC<Props> = ({ data }) => {
         }}
       >
         <div
-          style={{ width: `${positivePercentage}%`, backgroundColor: "green" }}
+          style={{
+            width: `${positivePercentage}%`,
+            backgroundColor: "#8BC34A",
+          }}
         />
         <div
           style={{
             width: `${neutralPercentage}%`,
-            backgroundColor: "lightgrey",
+            backgroundColor: "#9E9E9E",
           }}
         />
         <div
-          style={{ width: `${negativePercentage}%`, backgroundColor: "red" }}
+          style={{
+            width: `${negativePercentage}%`,
+            backgroundColor: "#E57373",
+          }}
         />
       </div>
     </>
