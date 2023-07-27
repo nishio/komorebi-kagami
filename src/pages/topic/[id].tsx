@@ -9,7 +9,7 @@ import { getAuth, onAuthStateChanged, signInAnonymously } from "firebase/auth";
 
 type TopicState = null | Topic; // not read yet
 
-const TestPage: React.FC = () => {
+const Page: React.FC = () => {
   const [topic, setTopic] = useState(null as TopicState);
   const [questions, setQuestions] = useState([] as TQuestion[]);
   const [votes, setVotes] = useState<{ [key: string]: number }>({});
@@ -79,12 +79,12 @@ const TestPage: React.FC = () => {
 
   return (
     <div>
-      <h1>test_topic</h1>
-      UserID: {userId}
+      <h1>{topic && topic.title}</h1>
+      {/* UserID: {userId} */}
       {topic && topic.description}
       {QuestionList}
     </div>
   );
 };
 
-export default TestPage;
+export default Page;
